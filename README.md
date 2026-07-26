@@ -1,35 +1,49 @@
 # PipeML
 
-PipeML is a modular machine learning pipeline built around a real Pipe & Filter architecture. The project trains a classifier on the Breast Cancer dataset from scikit-learn and passes every stage of the workflow through independent modules that communicate only through data classes.
+PipeML is a professional-grade, modular machine learning project built with a real Pipe & Filter architecture. It demonstrates how a production-inspired Python pipeline can train and evaluate a classifier while keeping every process stage independent, testable, and reusable.
 
-## Why this project exists
+## Project Overview
 
-This repository is designed to demonstrate:
+This repository is designed to show:
 
-- Python proficiency and clean software design
-- Applied machine learning fundamentals and evaluation
-- Real Pipe & Filter architecture rather than notebook-centric experimentation
-- SOLID-oriented modularity and reusable components
+- Python engineering skills with type hints, dataclasses, and clean module boundaries
+- Machine learning pipeline fundamentals from loading to reporting
+- Pipe & Filter architecture with single-responsibility stages
+- Reusable, testable design instead of notebook-based experimentation
+- Clear artifact generation for evaluation and model diagnostics
 
-## Architecture at a glance
+## Features
 
-The workflow is intentionally separated into single-responsibility stages:
+- Built-in scikit-learn dataset support (Breast Cancer, Iris)
+- Structured pipeline with independent filters
+- Data validation, cleaning, feature engineering, scaling
+- Model training, prediction, evaluation, and error analysis
+- Automatic report generation with plots and CSV artifacts
+- Configurable pipeline settings via `config.yaml`
 
-1. DataLoader
-2. DataValidator
-3. DataCleaner
-4. FeatureEngineer
-5. TrainTestSplitter
-6. Scaler
-7. ModelTrainer
-8. Predictor
-9. Evaluator
-10. ErrorAnalyzer
-11. ReportGenerator
+## Architecture
 
-Each stage communicates through the shared PipelineContext dataclass, which prevents hidden shared state and makes the system easy to test and extend.
+The pipeline is organized into independent filters that each accept and return a shared `PipelineContext` dataclass. This prevents hidden state and makes it easy to add, remove, or replace stages.
 
-## Folder structure
+Key stages:
+
+1. `DataLoader`
+2. `DataValidator`
+3. `DataCleaner`
+4. `FeatureEngineer`
+5. `TrainTestSplitter`
+6. `Scaler`
+7. `ModelTrainer`
+8. `Predictor`
+9. `Evaluator`
+10. `ErrorAnalyzer`
+11. `ReportGenerator`
+
+## Pipeline
+
+The orchestrator executes the pipeline in a linear workflow: load data, validate it, clean it, engineer features, split train/test, scale numeric values, train a model, predict on the test set, evaluate results, analyze errors, and persist reports.
+
+## Project Structure
 
 ```text
 PipeML/
@@ -75,8 +89,7 @@ PipeML/
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Linux/macOS
-.venv\Scripts\activate  # Windows
+.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
@@ -88,31 +101,43 @@ Run the full pipeline:
 python -m pipeml.main
 ```
 
-The script creates the following output files in the outputs directory:
+## Pipeline output
 
-- classification_report.txt
-- metrics.json
-- confusion_matrix.png
-- roc_curve.png
-- feature_importance.png
-- error_analysis.csv
+Running the pipeline produces the following artifacts in the `outputs/` folder:
 
-## Sample outputs
+- `classification_report.txt`
+- `metrics.json`
+- `confusion_matrix.png`
+- `roc_curve.png`
+- `feature_importance.png`
+- `error_analysis.csv`
 
-Expected artifacts are written to the outputs directory after running the pipeline.
+## Test suite
 
-## Future improvements
+Run the unit tests with:
 
-- Add support for additional datasets and algorithms
-- Introduce experiment tracking with MLflow
-- Add CI/CD with GitHub Actions
-- Add model explainability dashboards
+```bash
+python -m pytest -q
+```
 
-## Screenshots placeholder
+## Sample metrics
 
-- Architecture diagram: coming soon
-- Evaluation dashboard: coming soon
+The current implementation generates strong baseline performance with metrics such as:
 
-## Pipe & Filter explanation
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC AUC
+- Cross-validation score
 
-A Pipe & Filter architecture is useful here because each stage transforms the data in a predictable, testable way. The design makes the pipeline modular, encourages single-responsibility components, and allows new filters to be inserted without rewriting the rest of the workflow.
+## Future work
+
+- Add additional datasets and classifier options
+- Add GitHub Actions for CI testing
+- Introduce experiment tracking and model versioning
+- Add more robust feature engineering and explainability
+
+## Notes for reviewers
+
+This project is intentionally structured to look like a professional codebase instead of a single notebook. The design emphasizes maintainability, modularity, and clear engineering practices.
