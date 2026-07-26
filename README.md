@@ -39,9 +39,14 @@ Key stages:
 10. `ErrorAnalyzer`
 11. `ReportGenerator`
 
+
+## Why Pipe & Filter?
+
+This architecture was chosen because each stage of a machine learning workflow has a single responsibility. Individual filters can be tested, replaced, or extended without affecting the rest of the pipeline, making the system easier to maintain and evolve.
 ## Pipeline
 
 The orchestrator executes the pipeline in a linear workflow: load data, validate it, clean it, engineer features, split train/test, scale numeric values, train a model, predict on the test set, evaluate results, analyze errors, and persist reports.
+
 
 ## Project Structure
 
