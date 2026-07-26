@@ -1,0 +1,15 @@
+dataset:
+  name: breast_cancer
+
+split:
+  test_size: 0.2
+  random_state: 42
+
+model:
+  name: random_forest
+  random_state: 42
+
+output_dir: outputs
+
+logging:
+  level: INFO
