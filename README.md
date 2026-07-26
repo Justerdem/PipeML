@@ -1,6 +1,6 @@
 # PipeML
 
-PipeML is a professional-grade, modular machine learning project built with a real Pipe & Filter architecture. It demonstrates how a production-inspired Python pipeline can train and evaluate a classifier while keeping every process stage independent, testable, and reusable.
+PipeML is a modular machine learning project built with a real Pipe & Filter architecture. It demonstrates how a production-inspired Python pipeline can train and evaluate a classifier while keeping every process stage independent, testable, and reusable.
 
 ## Project Overview
 
@@ -140,4 +140,4 @@ The current implementation generates strong baseline performance with metrics su
 
 ## Notes for reviewers
 
-This project is intentionally structured to look like a professional codebase instead of a single notebook. The design emphasizes maintainability, modularity, and clear engineering practices.
+This project focuses on maintainability, modularity, and software engineering practices rather than being a notebook-based machine learning experiment.
