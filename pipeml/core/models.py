@@ -8,7 +8,7 @@ import numpy as np
 
 @dataclass
 class PipelineContext:
-    """Shared state passed between pipeline stages."""
+    """Shared state passed between pipe-and-filter stages."""
 
     dataset_name: str
     X: np.ndarray | None = None
