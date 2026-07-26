@@ -12,6 +12,10 @@ class Scaler(BaseFilter):
     def __init__(self) -> None:
         super().__init__(name="Scaler")
 
+    def _fit_transform(self, values):
+        scaler = StandardScaler()
+        return scaler.fit_transform(values)
+
     def run(self, context: PipelineContext) -> PipelineContext:
         if context.X_train is None or context.X_test is None:
             raise ValueError("The context must contain train and test splits")
